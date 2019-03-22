@@ -29,4 +29,9 @@ def create_app(config_name):
     # 设置session保存位置
     Session(app)
 
+    # 注册蓝图
+    from info.modules.index import index_blu
+    app.register_blueprint(index_blu)
+
     return app
+
