@@ -12,7 +12,7 @@ tinymce.init({
     plugins: [
             'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-            'save table contextmenu directionality template paste textcolor',
+            'save table contextmenu directionality templates paste textcolor',
             'codesample imageupload',
     ],
     //工具栏的补丁按钮

@@ -1,6 +1,11 @@
-from . import index_blu
+from . import index_blue
+from flask import render_template
 
 
-@index_blu.route('/index')
+@index_blue.route('/')
+@index_blue.route('/index')
 def index():
-    return 'index'
+    """主页"""
+
+    # 渲染主页
+    return render_template('news/index.html')
