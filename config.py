@@ -10,7 +10,7 @@ class Config(object):
     DEBUG = True
 
     # 数据库配置信息_MySQL
-    SQLALCHEMY_DATABASE_URI = "mysql://root:mysql@127.0.0.1:3306/information"
+    SQLALCHEMY_DATABASE_URI = "mysql://root@127.0.0.1:3306/information"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # 数据库_Redis配置
