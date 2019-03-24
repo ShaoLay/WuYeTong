@@ -82,6 +82,28 @@ class User(BaseModel, db.Model):
         return resp_dict
 
 
+    # 以下代码是定义password属性的setter和getter方法
+    @property
+    def password(self):
+        raise AttributeError('can not read')
+
+    @password.setter
+    def password(self, value):
+        """外界直接调用该属性的该setter方法，加密的过程，封装在setter方法中
+        提示:属性名字不要和password_hash重名
+        value : 是外界在调用setter方法时传入的密码的明文
+        """
+        self.password_hash = generate_password_hash(value)
+
+    def check_password(self, password):
+        """
+        用于校验密码
+        :param password: 要检验的密码的明文
+        :return: 返回校验的结果 True/False
+        """
+        return check_password_hash(self.password_hash, password)
+
+
 class News(BaseModel, db.Model):
     """新闻"""
     __tablename__ = "info_news"

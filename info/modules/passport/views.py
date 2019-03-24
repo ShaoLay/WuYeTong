@@ -1,21 +1,27 @@
-import json
-import re
-
-from flask import request, abort, current_app, make_response, jsonify
-
-from info import redis_store, constants
-from info.libs.yuntongxun.sms import CCP
-from info.utils import response_code
-from info.utils.captcha.captcha import *
+# 注册和登录
 from . import passport_blue
+from flask import request,abort,current_app,make_response,jsonify, session
+from info.utils.captcha.captcha import captcha
+from info import redis_store, constants, response_code, db
+import json, re, random, datetime
+from info.libs.yuntongxun.sms import CCP
+from info.models import User
+
 
 
 @passport_blue.route('/sms_code', methods=['POST'])
 def sms_code():
+    """发送短信
+    1.接受参数（手机号，图片验证码，uuid）
+    2.校验参数是否齐全，手机号是否合法
+    3.查询服务器存储的图片验证码
+    4.跟客户端传入的图片验证码对比
+    5.如果对比成功，生成短信验证码，并发送短信
+    6.存储短信验证码到redis,方便注册时比较
+    7.响应短信验证码发送的结果
     """
-    发送短信
-    """
-    # 1.接受参数(手机号， 图片验证码， uuid)
+    # 1.接受参数（手机号，图片验证码，uuid）
+    # '{'mobile':'17600992168','image_code':'asdc','image_code_id':'uuid'}'
     json_str = request.data
     json_dict = json.loads(json_str)
     mobile = json_dict.get('mobile')
@@ -30,7 +36,7 @@ def sms_code():
 
     # 3.查询服务器存储的图片验证码
     try:
-        image_code_server = redis_store.get('ImageCode:' + image_code_id)
+        image_code_server = redis_store.get('ImageCode:'+image_code_id)
     except Exception as e:
         current_app.logger.error(e)
         return jsonify(errno=response_code.RET.DBERR, errmsg='查询图片验证码失败')
@@ -41,16 +47,17 @@ def sms_code():
     if image_code_server.lower() != image_code_client.lower():
         return jsonify(errno=response_code.RET.PARAMERR, errmsg='输入验证码有误')
 
-        # 5.如果对比成功，生成短信验证码，并发送短信
-        # '%06d' : 如果不够6位，补0.比如:28-->000028
+    # 5.如果对比成功，生成短信验证码，并发送短信
+    # '%06d' : 如果不够6位，补0.比如:28-->000028
     sms_code = '%06d' % random.randint(0, 999999)
-    result = CCP().send_template_sms(mobile, [sms_code, 5], 1)
-    if result != 0:
-        return jsonify(errno=response_code.RET.THIRDERR, errmsg='发送短信验证码失败')
+    current_app.logger.debug(sms_code)
+    # result = CCP().send_template_sms(mobile, [sms_code, 5], 1)
+    # if result != 0:
+    #     return jsonify(errno=response_code.RET.THIRDERR, errmsg='发送短信验证码失败')
 
     # 6.存储短信验证码到redis,方便注册时比较
     try:
-        redis_store.set('SMS:' + mobile, sms_code, constants.SMS_CODE_REDIS_EXPIRES)
+        redis_store.set('SMS:'+mobile, sms_code, constants.SMS_CODE_REDIS_EXPIRES)
     except Exception as e:
         current_app.logger.error(e)
         return jsonify(errno=response_code.RET.DBERR, errmsg='保存短信验证码失败')
@@ -59,32 +66,37 @@ def sms_code():
     return jsonify(errno=response_code.RET.OK, errmsg='发送短信验证码成功')
 
 
-@passport_blue.route('/image_code')
-def get_image_code():
+@passport_blue.route('/image_code', methods=['GET'])
+def image_code():
+    """提供图片验证码
+    1.接受参数（uuid）
+    2.校验参数（判断uuid是否为空）
+    3.生成图片验证码
+    4.保存图片验证码到redis
+    5.修改image的ContentType = 'image/jpg'
+    6.响应图片验证码
     """
-    获取图片验证码
-    :return:
-    """
-
-    # 1.接受参数(uuid)
+    # 1.接受参数（uuid）
     imageCodeId = request.args.get('imageCodeId')
 
-    # 2.校验参数(判断uuid是否为空)
+    # 2.校验参数（判断uuid是否为空）
     if not imageCodeId:
         abort(403)
 
     # 3.生成图片验证码
-    name, text, image = captcha.generate_captcha()
+    name,text,image = captcha.generate_captcha()
+    current_app.logger.debug(text)
 
-    # 4.保存图片验证码redis
+    # 4.保存图片验证码到redis
     try:
         redis_store.set('ImageCode:'+imageCodeId, text, constants.IMAGE_CODE_REDIS_EXPIRES)
     except Exception as e:
+        current_app.logger.error(e)
         abort(500)
 
-    # 5.修改image的ContentType = ’image/jpg‘
+    # 5.修改image的ContentType = 'image/jpg'
     response = make_response(image)
     response.headers['Content-Type'] = 'image/jpg'
 
-    # 5.响应图片验证码
+    # 6.响应图片验证码
     return response

@@ -1,44 +1,64 @@
+from redis import StrictRedis
 import logging
-
-import redis
 
 
 class Config(object):
-    """工程配置信息"""
-    SECRET_KEY = "EjpNVSNQTyGi1VvWECj9TvC/+kq3oujee2kTfQUs8yCM6xX9Yjq52v54g+HVoknA"
+    """配置文件的加载"""
 
+    # 项目秘钥：CSRF/session,还有其他的一些签名算法会用
+    SECRET_KEY = 'q7pBNcWPgmF6BqB6b5VICF7z7pI+90o0O4CaJsFGjzRsYiya9SEgUDytXvzFsIaR'
+
+    # 开启调试模式
     DEBUG = True
 
-    # 数据库配置信息_MySQL
-    SQLALCHEMY_DATABASE_URI = "mysql://root@127.0.0.1:3306/information"
+    # 配置MySQL数据库连接信息:真实开发中，要使用mysql数据库的真实IP
+    SQLALCHEMY_DATABASE_URI = 'mysql://root@127.0.0.1:3306/information'
+    # 不去追踪数据库的修改，节省开销
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # 数据库_Redis配置
-    REDIS_HOST = "127.0.0.1"
+    # 配置redis数据库:因为redis模块不是flask的扩展，所以就不会自动的从config中读取配置信息，只能自己读取
+    REDIS_HOST = '127.0.0.1'
     REDIS_PORT = 6379
 
-    # flask_session的配置信息
-    SESSION_TYPE = "redis"  # 指定session保存到redis中
-    SESSION_USE_SIGNER = True   # 让 cookie 中的 session_id 被加密签名处理
-    SESSION_REDIS = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT)  # 使用 redis 的实例
-    PERMANENT_SESSION_LIFETIME = 86400  # session 的有效期，单位是秒
+    # 指定session使用什么来存储
+    SESSION_TYPE = 'redis'
+    # 指定session数据存储在后端的位置
+    SESSION_REDIS = StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
+    # 是否使用secret_key签名你的sessin
+    SESSION_USE_SIGNER = True
+    # 设置过期时间，要求'SESSION_PERMANENT', True。而默认就是31天
+    PERMANENT_SESSION_LIFETIME = 60*60*24 # 一天有效期
 
-    # 默认日志等级
-    LOG_LEVEL = logging.DEBUG
 
+# 以下代码是封装不同开发环境下的配置信息
 
-class DevelopementConfig(Config):
-    """开发模式下的配置"""
-    DEBUG = True
+class DevlopmentConfig(Config):
+    """开发环境"""
+    # 开发环境和父类基本一致
+
+    # 开发环境日志等级
+    LEVEL_LOG = logging.DEBUG
+
 
 class ProductionConfig(Config):
-    """生产模式下的配置"""
-    """生产模式下的配置"""
-    LOG_LEVEL = logging.ERROR
+    """生产环境"""
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@127.0.0.1:3306/information_pro_29'
+    # 生产环境日志等级
+    LEVEL_LOG = logging.ERROR
 
 
-# 定义配置字典
-config = {
-    "development": DevelopementConfig,
-    "production": ProductionConfig
+class UnittestConfig(Config):
+    """测试环境"""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@127.0.0.1:3306/information_case_29'
+    # 生产环境日志等级
+    LEVEL_LOG = logging.DEBUG
+
+
+# 定义字典，存储关键字对应的不同的配置类的类名
+configs = {
+    'dev':DevlopmentConfig,
+    'pro':ProductionConfig,
+    'unit':UnittestConfig
 }
