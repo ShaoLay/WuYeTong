@@ -5,7 +5,7 @@ from info.utils.captcha.captcha import *
 from . import passport_blue
 
 
-@passport_blue.route('/image_code', method=["GET"])
+@passport_blue.route('/image_code')
 def get_image_code():
     """
     获取图片验证码
