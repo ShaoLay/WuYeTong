@@ -10,7 +10,7 @@ from info.utils.captcha.captcha import *
 from . import passport_blue
 
 
-@passport_blue.route('/sms_code')
+@passport_blue.route('/sms_code', methods=['POST'])
 def sms_code():
     """
     发送短信
