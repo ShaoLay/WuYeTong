@@ -39,10 +39,17 @@ def news_detail(news_id):
         current_app.logger.error(e)
         db.session.rollback()
 
+    # 收藏和取消收藏
+    is_collected = False
+    if user:
+        if news in user.collection_news:
+            is_collected = True
+
     context = {
         'user':user,
         'news_clicks':news_clicks,
         'news':news.to_dict(),
+        'is_collected':is_collected
 
     }
 
