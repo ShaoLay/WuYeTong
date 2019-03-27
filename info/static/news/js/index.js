@@ -50,10 +50,14 @@ $(function () {
                 // 表示正在加载数据
                 data_querying = true;
 
-                // 计算当前在第几页
-                cur_page += 1;
+                // 计算当前在第几页 114  total_page = 116
+                // cur_page += 1;
 
                 if (cur_page < total_page) {
+
+                    // 计算当前在第几页
+                    cur_page += 1;
+
                     // 加载指定页码的新闻数据
                     updateNewsData();
                 }
