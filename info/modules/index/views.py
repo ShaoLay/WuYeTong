@@ -1,4 +1,5 @@
 # 主页模块
+from info.utils.comment import user_login_data
 from . import index_blue
 from flask import render_template,current_app,session,request,jsonify
 from info.models import User, News, Category
@@ -63,6 +64,7 @@ def index_news_list():
     return jsonify(errno=response_code.RET.OK, errmsg='OK', data=data)
 
 @index_blue.route('/')
+@user_login_data
 def index():
     """主页
     1.处理网页右上角的用户展示数据：当用户已登录展示'用户名 退出'；反之，展示'登录 注册'
