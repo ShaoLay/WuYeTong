@@ -96,7 +96,8 @@ def index():
     # 构造渲染模板的上下文数据
     context = {
         'user':user,
-        'news_clicks':news_clicks
+        'news_clicks':news_clicks,
+        'categories':categories
     }
 
     # 渲染主页
