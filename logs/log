@@ -1385,3 +1385,8 @@ INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:52:12] "GET /news_list?cid=1&
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:52:13] "GET /news_list?cid=1&page=11 HTTP/1.1" 200 -
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:52:13] "GET /news_list?cid=1&page=12 HTTP/1.1" 200 -
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:52:13] "GET /news_list?cid=1&page=13 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:54:21] "GET /news_list?cid=2&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:54:24] "GET /news_list?cid=3&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:54:26] "GET /news_list?cid=4&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:54:30] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 09:54:31] "GET /news/detail/149 HTTP/1.1" 404 -
