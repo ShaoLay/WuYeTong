@@ -36,6 +36,7 @@ def create_app(config_name):
     # 根据创建app时的配置环境，加载日志等级
     setup_log(configs[config_name].LEVEL_LOG)
 
+    # info
     app = Flask(__name__)
 
     # 获取配置信息
@@ -50,7 +51,7 @@ def create_app(config_name):
     redis_store = StrictRedis(host=configs[config_name].REDIS_HOST, port=configs[config_name].REDIS_PORT, decode_responses=True)
 
     # 开启CSRF保护：因为项目中的表单不再使用FlaskForm来实现，所以不会自动的开启CSRF保护，需要自己开启
-    # CSRFProtect(app)
+    CSRFProtect(app)
 
     # 使用请求勾子，实现每个响应中写入cookie
     @app.after_request
@@ -62,7 +63,8 @@ def create_app(config_name):
         response.set_cookie('csrf_token', csrf_token)
         return response
 
-    # 将自定义的过滤器函数， 添加道app的过滤器列表中
+    # 将自定义的过滤器函数，添加到app的过滤器列表中
+    # rank ： 在模板中使用的别名
     from info.utils.comment import do_rank
     app.add_template_filter(do_rank, 'rank')
 

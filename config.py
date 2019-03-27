@@ -43,7 +43,7 @@ class DevlopmentConfig(Config):
 class ProductionConfig(Config):
     """生产环境"""
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@127.0.0.1:3306/information_pro_29'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root@127.0.0.1:3306/information'
     # 生产环境日志等级
     LEVEL_LOG = logging.ERROR
 
@@ -51,7 +51,7 @@ class ProductionConfig(Config):
 class UnittestConfig(Config):
     """测试环境"""
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:mysql@127.0.0.1:3306/information_case_29'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root@127.0.0.1:3306/information'
     # 生产环境日志等级
     LEVEL_LOG = logging.DEBUG
 

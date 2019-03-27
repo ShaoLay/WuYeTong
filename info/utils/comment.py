@@ -43,3 +43,17 @@ def user_login_data(view_func):
         return view_func(*args, **kwargs)
 
     return wrapper
+
+
+# def user_login_data():
+#     """获取登录用户的信息的函数"""
+#     user_id = session.get('user_id', None)
+#     user = None
+#     if user_id:
+#         # 表示用户已经登录，然后查询用户的信息
+#         try:
+#             user = User.query.get(user_id)
+#         except Exception as e:
+#             current_app.logger.error(e)
+#
+#     return user

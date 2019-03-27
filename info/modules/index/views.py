@@ -1,9 +1,9 @@
 # 主页模块
-from info.utils.comment import user_login_data
 from . import index_blue
 from flask import render_template,current_app,session,request,jsonify
-from info.models import User, News, Category
-from info import constants, response_code, redis_store, db
+from info.models import User, News,Category
+from info import constants,response_code
+
 
 
 @index_blue.route('/news_list')
@@ -63,12 +63,13 @@ def index_news_list():
     # 5.响应新闻列表数据
     return jsonify(errno=response_code.RET.OK, errmsg='OK', data=data)
 
+
 @index_blue.route('/')
-@user_login_data
 def index():
     """主页
     1.处理网页右上角的用户展示数据：当用户已登录展示'用户名 退出'；反之，展示'登录 注册'
     2.新闻点击排行展示：在News数据库表中查询，根据点击量clicks倒叙
+    3.新闻分类
     """
     # 1.处理网页右上角的用户展示数据
     user_id = session.get('user_id', None)
@@ -89,6 +90,7 @@ def index():
         current_app.logger.error(e)
 
     # 3.新闻分类
+    # categories = [Category,Category,Category,Category,Category,Category]
     categories = []
     try:
         categories = Category.query.all()
