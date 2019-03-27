@@ -1,0 +1,44 @@
+{% extends 'news/base.html' %}
+
+
+{% block title %}
+    首页-新经资讯
+{% endblock title %}
+
+
+{% block script %}
+    <script type="text/javascript" src="../../static/news/js/index.js"></script>
+{% endblock script %}
+
+
+{% block menu_category %}
+    {# 新闻分类标签 #}
+    <ul class="menu fl">
+        {% for category in context.categories %}
+            {% if loop.index == 1 %}
+                <li class="active" data-cid="{{ category.id }}"><a href="javascript:;">{{ category.name }}</a></li>
+            {% else %}
+                <li data-cid="{{ category.id }}"><a href="javascript:;">{{ category.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock menu_category %}
+
+
+{% block content %}
+    <div class="conter_con">
+        <ul class="list_con fl">
+        {# 这里将来使用js动态的渲染#}
+        </ul>
+        <div class="rank_con fr">
+            <div class="rank_title">
+                <h3>点击排行</h3>
+            </div>
+            <ul class="rank_list">
+                {% for news in context.news_clicks %}
+                    <li><span class="{{ loop.index | rank }}">{{ loop.index }}</span><a href="#">{{ news.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock content %}
