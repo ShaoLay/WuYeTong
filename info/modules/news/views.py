@@ -1,6 +1,6 @@
 from flask import render_template, session, current_app, g, abort
 
-from info import constants
+from info import constants, db
 from info.models import User, News
 from info.modules.news import news_blue
 from info.utils.comment import user_login_data
@@ -14,7 +14,7 @@ def news_detail(news_id):
     user = g.user
 
     # 2.查询点击排行
-    news_click = []
+    news_clicks = []
     try:
         news_clicks = News.query.order_by(News.clicks.desc()).limit(constants.CLICK_RANK_MAX_NEWS)
     except Exception as e:
@@ -31,9 +31,17 @@ def news_detail(news_id):
     if not news:
         abort(404)
 
+    # 累加点击量
+    news.clicks += 1
+    try:
+        db.session.commit()
+    except Exception as e:
+        current_app.logger.error(e)
+        db.session.rollback()
+
     context = {
         'user':user,
-        # 'news_clicks':news_clicks,
+        'news_clicks':news_clicks,
         'news':news.to_dict(),
 
     }
