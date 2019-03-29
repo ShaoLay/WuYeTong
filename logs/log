@@ -1447,3 +1447,170 @@ INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 15:29:35] "GET /static/news/imag
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 15:29:35] "POST /news/news_collect HTTP/1.1" 200 -
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 15:29:35] "GET /static/news/images/collect_icons.png HTTP/1.1" 304 -
 INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 15:29:37] "POST /news/news_collect HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET / HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/css/reset.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/css/main.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/js/jquery-1.12.4.min.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/js/main.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/js/index.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/images/logo.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/images/pic_code.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/images/hit_icon.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:39] "GET /static/news/images/clock.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:42] "GET /static/news/images/shutoff.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:44] "POST /passport/login HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:09:50] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:42] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:42] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:42] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:42] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:42] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:51] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:51] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:51] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:51] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:11:51] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:12:29] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:12:29] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:12:29] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:12:29] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:12:29] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:56] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:56] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:56] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:56] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:56] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:13:59] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:12] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:12] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:12] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:12] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:13] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:13] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:15:33] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Detected change in '/home/hamdi/代码管理器/WuYeTong/info/modules/news/views.py', reloading
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:11] "GET / HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:11] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:11] "GET /?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:11] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:12] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [27/Mar/2019 16:17:12] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:07] "GET /index HTTP/1.1" 404 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:07] "GET /favicon.ico HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET / HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/css/main.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/js/jquery-1.12.4.min.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/js/main.js HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/css/reset.css HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/js/index.js HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/images/logo.png HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/images/pic_code.png HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/images/hit_icon.png HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:12] "GET /static/news/images/clock.png HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET / HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/css/reset.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/js/main.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/js/jquery-1.12.4.min.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/css/main.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/js/index.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/images/logo.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/images/pic_code.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/images/hit_icon.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:24] "GET /static/news/images/clock.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /news/detail/149 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/js/detail.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/images/user_pic.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/images/clock.png HTTP/1.1" 304 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/images/comment_icon.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/images/collect_icons.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:26] "GET /static/news/images/focus_icons.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET / HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/js/jquery-1.12.4.min.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/css/main.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/css/reset.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/js/main.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/js/index.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/images/logo.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/images/pic_code.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/images/hit_icon.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /news_list?cid=1&page=1 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:43] "GET /static/news/images/clock.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /news/detail/149 HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /static/news/js/detail.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /static/news/images/user_pic.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /static/news/images/comment_icon.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /static/news/images/collect_icons.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /static/news/images/focus_icons.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:46] "GET /favicon.ico HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:50] "POST /news/news_collect HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:50] "GET /static/news/images/shutoff.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:52] "POST /passport/login HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149 HTTP/1.1" 500 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97 127.0.0.1 - - [29/Mar/2019 10:08:58] "GET /news/detail/149?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO _internal.py:97  * Detected change in '/home/hamdi/代码管理器/WuYeTong/info/modules/news/views.py', reloading
+INFO _internal.py:97  * Restarting with stat
+WARNING _internal.py:97  * Debugger is active!
+INFO _internal.py:97  * Debugger PIN: 316-346-478
