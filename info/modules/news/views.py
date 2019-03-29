@@ -6,6 +6,25 @@ from info import constants, db,response_code
 from info.utils.comment import user_login_data
 
 
+@news_blue.route('/comment_like', methods=['POST'])
+@user_login_data
+def comment_like():
+    """新闻点赞和取消点赞"""
+    # 1.获取登录用户信息
+    user = g.user
+    if not user:
+        return jsonify(errno=response_code.RET.SESSIONERR, errmsg='用户未登录')
+
+    # 2.接受参数(comment_id, action)
+    comment_id = request.json.get('comment_id')
+    action = request.json.get('action')
+
+    # 3.校验参数
+    if not all([comment_id, action]):
+        return jsonify(errno=response_code.RET.PARAMERR, errmsg='缺少参数')
+    if action not in ['add', 'remove']:
+        return jsonify(errno=response_code.RET.PARAMERR, errmsg='参数错误')
+
 @news_blue.route('/news_comment', methods=['POST'])
 @user_login_data
 def news_comment():
