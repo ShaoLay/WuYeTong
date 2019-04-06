@@ -2,7 +2,7 @@
 from . import user_blue
 from flask import render_template,g,redirect,url_for,request,jsonify,current_app,session
 from info.utils.comment import user_login_data
-from info import response_code,db
+from info import response_code, db, constants
 
 
 @user_blue.route('/pic_info', methods=['GET', 'POST'])
