@@ -1,4 +1,5 @@
 # 个人中心
+from info.utils.file_storage import upload_file
 from . import user_blue
 from flask import render_template,g,redirect,url_for,request,jsonify,current_app,session
 from info.utils.comment import user_login_data
@@ -8,10 +9,9 @@ from info import response_code, db, constants
 @user_blue.route('/pic_info', methods=['GET', 'POST'])
 @user_login_data
 def pic_info():
+    """设置头像
     """
-    设置头像
-    :return:
-    """
+    # 1.获取登录用户信息
     user = g.user
     if not user:
         return redirect(url_for('index.index'))
@@ -20,10 +20,11 @@ def pic_info():
     if request.method == 'GET':
         # 构造渲染数据的上下文
         context = {
-            'user':user.to_dict()
+            'user': user.to_dict()
         }
         # 渲染界面
         return render_template('news/user_pic_info.html', context=context)
+
     # 3.POST请求逻辑:上传用户头像
     if request.method == 'POST':
         # 3.1 获取参数（图片）
@@ -53,10 +54,10 @@ def pic_info():
             return jsonify(errno=response_code.RET.DBERR, errmsg='保存用户头像失败')
 
         data = {
-            'avatar_url': constants.QINIU_DOMIN_PREFIX + key
+            'avatar_url':constants.QINIU_DOMIN_PREFIX + key
         }
         # 3.5 响应头像上传的结果
-    return jsonify(errno=response_code.RET.OK, errmsg='上传成功', data=data)
+        return jsonify(errno=response_code.RET.OK, errmsg='上传成功',data=data)
 
 
 @user_blue.route('/base_info', methods=['GET', 'POST'])
@@ -73,7 +74,7 @@ def base_info():
     if request.method == 'GET':
         # 构造渲染数据的上下文
         context = {
-            'user': user
+            'user': user.to_dict()
         }
         # 渲染界面
         return render_template('news/user_base_info.html',context=context)
@@ -122,7 +123,7 @@ def user_info():
         return redirect(url_for('index.index'))
 
     context = {
-        'user':user
+        'user':user.to_dict()
     }
 
     return render_template('news/user.html', context=context)

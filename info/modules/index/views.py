@@ -97,9 +97,16 @@ def index():
     except Exception as e:
         current_app.logger.error(e)
 
+    # if user:
+    #     user = user.to_dict()
+    # else:
+    #     user = None
+
     # 构造渲染模板的上下文数据
     context = {
-        'user':user,
+        # 'user': user.to_dict(),
+        # 'user':None.to_dict(), # NoneType Error
+        'user': user.to_dict() if user else None,
         'news_clicks':news_clicks,
         'categories':categories
     }
