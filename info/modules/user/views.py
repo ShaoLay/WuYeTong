@@ -6,6 +6,87 @@ from info.utils.comment import user_login_data
 from info import response_code, db, constants
 
 
+
+@user_blue.route('/news_release', methods=['GET', 'POST'])
+@user_login_data
+def news_release():
+    """新闻发布"""
+    # 1.获取登录用户信息
+    user = g.user
+    if not user:
+        return redirect(url_for('index.index'))
+
+    # 2. GET请求逻辑：渲染发布新闻的界面
+    if request.method == 'GET':
+        # 2.1 渲染新闻的分类数据
+        categories = []
+        try:
+            categories = Category.query.all()
+        except Exception as e:
+            current_app.logger.error(e)
+
+        # "最新"分类不是用户发布新闻时绑定的。
+        categories.pop(0)
+
+        context = {
+            'categories':categories
+        }
+
+        return render_template('news/user_news_release.html',context=context)
+
+    # 3. POST请求逻辑：实现新闻发布的业务逻辑
+    if request.method == 'POST':
+        # 3.1 接受参数
+        title = request.form.get("title")
+        source = "个人发布"
+        digest = request.form.get("digest")
+        content = request.form.get("content")
+        index_image = request.files.get("index_image")
+        category_id = request.form.get("category_id")
+
+        # 3.2 校验参数
+        if not all([title,source,digest,content,index_image,category_id]):
+            return jsonify(errno=response_code.RET.PARAMERR, errmsg='缺少参数')
+
+        # 3.3 读取用户上传的新闻图片
+        try:
+            index_image_data = index_image.read()
+        except Exception as e:
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.PARAMERR, errmsg='读取新闻图片失败')
+
+        # 3.4 将用户上传的新闻图片转存到七牛
+        try:
+            key = upload_file(index_image_data)
+        except Exception as e:
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.THIRDERR, errmsg='上传新闻图片失败')
+
+        # 3.5 创建News新闻模型对象，并赋值和同步到数据库
+        news = News()
+        news.title = title
+        news.digest = digest
+        news.source = source
+        news.content = content
+        # 纯粹是迫不得已：因为我们的是新闻类的网站，里面大部分的数据否是靠爬虫爬的，爬虫会将新闻的图片的全路径url爬下来
+        # 那么我们就需要存储新闻图片的全路径url http://ip:port/path
+        news.index_image_url = constants.QINIU_DOMIN_PREFIX + key
+        news.category_id = category_id
+        news.user_id = user.id
+        # 1代表待审核状态
+        news.status = 1
+
+        try:
+            db.session.add(news)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.DBERR, errmsg='保存新闻数据失败')
+
+        # 3.6 响应新闻发布的结果
+        return jsonify(errno=response_code.RET.OK, errmsg='发布新闻成功')
+
 @user_blue.route('/user_collection')
 @user_login_data
 def user_collection():
