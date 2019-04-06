@@ -5,6 +5,60 @@ from info.utils.comment import user_login_data
 from info import response_code,db
 
 
+@user_blue.route('/pic_info', methods=['GET', 'POST'])
+@user_login_data
+def pic_info():
+    """
+    设置头像
+    :return:
+    """
+    user = g.user
+    if not user:
+        return redirect(url_for('index.index'))
+
+    # 2.实现GET请求逻辑
+    if request.method == 'GET':
+        # 构造渲染数据的上下文
+        context = {
+            'user':user.to_dict()
+        }
+        # 渲染界面
+        return render_template('news/user_pic_info.html', context=context)
+    # 3.POST请求逻辑:上传用户头像
+    if request.method == 'POST':
+        # 3.1 获取参数（图片）
+        avatar_file = request.files.get('avatar')
+
+        # 3.2 校验参数（图片）
+        try:
+            avatar_data = avatar_file.read()
+        except Exception as e:
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.PARAMERR, errmsg='读取头像数据失败')
+
+        # 3.3 调用上传的方法，将图片上传的七牛
+        try:
+            key = upload_file(avatar_data)
+        except Exception as e:
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.THIRDERR, errmsg='上传失败')
+
+        # 3.4 保存用户头像的key到数据库
+        user.avatar_url = key
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.DBERR, errmsg='保存用户头像失败')
+
+        data = {
+            'avatar_url': constants.QINIU_DOMIN_PREFIX + key
+        }
+        # 3.5 响应头像上传的结果
+    return jsonify(errno=response_code.RET.OK, errmsg='上传成功', data=data)
+
+
 @user_blue.route('/base_info', methods=['GET', 'POST'])
 @user_login_data
 def base_info():
