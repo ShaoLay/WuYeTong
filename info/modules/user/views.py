@@ -6,6 +6,48 @@ from info.utils.comment import user_login_data
 from info import response_code, db, constants
 
 
+@user_blue.route('/pass_info', methods=['GET', 'POST'])
+@user_login_data
+def pass_info():
+    """修改密码"""
+
+    # 1.获取登录用户信息
+    user = g.user
+    if not user:
+        return redirect(url_for('index.index'))
+
+    # 2.GET请求逻辑：渲染修改密码的界面
+    if request.method == 'GET':
+        return render_template('news/user_pass_info.html')
+
+    # 3. POST请求逻辑： 修改密码业务逻辑实现
+    if request.method == 'POST':
+        # 3.1 接受参数
+        old_password = request.json.get('old_password')
+        new_password = request.json.get('new_password')
+
+        # 3.2 校验参数
+        if not all([old_password, new_password]):
+            return jsonify(errno=response_code.RET.PARAMERR, errmsg='缺少参数')
+
+        # 判断输入的旧的密码是否是该登录用户的密码
+        if not user.check_password(old_password):
+            return jsonify(errno=response_code.RET.PARAMERR, errmsg='原密码输入有误')
+
+        # 3.4 更新密码 # password ：setter方法
+        user.password = new_password
+
+        # 3.5 同步到数据库
+        try:
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            current_app.logger.error(e)
+            return jsonify(errno=response_code.RET.DBERR, errmsg='保存修改后的密码失败')
+
+        # 3.5 响应修改密码结果
+        return jsonify(errno=response_code.RET.OK, errmsg='修改密码成功')
+
 @user_blue.route('/pic_info', methods=['GET', 'POST'])
 @user_login_data
 def pic_info():
