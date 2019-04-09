@@ -1,10 +1,57 @@
 # 个人中心
-from info.utils.file_storage import upload_file
 from . import user_blue
 from flask import render_template,g,redirect,url_for,request,jsonify,current_app,session
 from info.utils.comment import user_login_data
-from info import response_code, db, constants
+from info import response_code,db,constants
+from info.utils.file_storage import upload_file
+from info.models import Category,News
 
+
+@user_blue.route('/news_list')
+@user_login_data
+def user_news_list():
+    """我发布的新闻列表"""
+    # 1.获取登录用户信息
+    user = g.user
+    if not user:
+        return redirect(url_for('index.index'))
+
+    # 2.接受参数
+    page = request.args.get('p', '1')
+
+    # 3.校验参数
+    try:
+        page = int(page)
+    except Exception as e:
+        current_app.logger.error(e)
+        page = '1'
+
+    # 4.分页查询
+    news_list = []
+    current_page = 1
+    total_page = 1
+    try:
+        paginate = News.query.filter(News.user_id==user.id).paginate(page,constants.USER_COLLECTION_MAX_NEWS,False)
+
+        # 5.构造渲染数据
+        news_list = paginate.items
+        current_page = paginate.page
+        total_page = paginate.pages
+    except Exception as e:
+        current_app.logger.error(e)
+
+    news_dict_list = []
+    for news in news_list:
+        news_dict_list.append(news.to_basic_dict())
+
+    context = {
+        'news_list':news_dict_list,
+        'current_page':current_page,
+        'total_page':total_page
+    }
+
+    # 6.渲染界面
+    return render_template('news/user_news_list.html', context=context)
 
 
 @user_blue.route('/news_release', methods=['GET', 'POST'])
@@ -87,6 +134,7 @@ def news_release():
         # 3.6 响应新闻发布的结果
         return jsonify(errno=response_code.RET.OK, errmsg='发布新闻成功')
 
+
 @user_blue.route('/user_collection')
 @user_login_data
 def user_collection():
@@ -96,40 +144,41 @@ def user_collection():
     if not user:
         return redirect(url_for('index.index'))
 
-        # 2.接受参数
-        page = request.args.get('p', '1')
+    # 2.接受参数
+    page = request.args.get('p', '1')
 
-        # 3.校验参数
-        try:
-            page = int(page)
-        except Exception as e:
-            current_app.logger.error(e)
-            page = '1'  # 公司中对于这种处理会有专门的方案的，不需要操心
+    # 3.校验参数
+    try:
+        page = int(page)
+    except Exception as e:
+        current_app.logger.error(e)
+        page = '1' # 公司中对于这种处理会有专门的方案的，不需要操心
 
-        # 4.分页查询 : user.collection_news == BaseQuery类型的对象
-        paginate = None
-        try:
-            paginate = user.collection_news.paginate(page, constants.USER_COLLECTION_MAX_NEWS, False)
-        except Exception as e:
-            current_app.logger.error(e)
+    # 4.分页查询 : user.collection_news == BaseQuery类型的对象
+    paginate = None
+    try:
+        paginate = user.collection_news.paginate(page, constants.USER_COLLECTION_MAX_NEWS, False)
+    except Exception as e:
+        current_app.logger.error(e)
 
-        # 5.构造渲染模板的数据
-        news_list = paginate.items
-        total_page = paginate.pages
-        current_page = paginate.page
+    # 5.构造渲染模板的数据
+    news_list = paginate.items
+    total_page = paginate.pages
+    current_page = paginate.page
 
-        news_dict_list = []
-        for news in news_list:
-            news_dict_list.append(news.to_basic_dict())
+    news_dict_list = []
+    for news in news_list:
+        news_dict_list.append(news.to_basic_dict())
 
-        context = {
-            'news_list': news_dict_list,
-            'total_page': total_page,
-            'current_page': current_page
-        }
+    context = {
+        'news_list':news_dict_list,
+        'total_page':total_page,
+        'current_page':current_page
+    }
 
-        # 6.渲染模板
-        return render_template('news/user_collection.html', context=context)
+    # 6.渲染模板
+    return render_template('news/user_collection.html',context=context)
+
 
 @user_blue.route('/pass_info', methods=['GET', 'POST'])
 @user_login_data
@@ -145,14 +194,14 @@ def pass_info():
     if request.method == 'GET':
         return render_template('news/user_pass_info.html')
 
-    # 3. POST请求逻辑： 修改密码业务逻辑实现
+    # 3.POST请求逻辑：修改密码业务逻辑实现
     if request.method == 'POST':
         # 3.1 接受参数
         old_password = request.json.get('old_password')
         new_password = request.json.get('new_password')
 
         # 3.2 校验参数
-        if not all([old_password, new_password]):
+        if not all([old_password,new_password]):
             return jsonify(errno=response_code.RET.PARAMERR, errmsg='缺少参数')
 
         # 判断输入的旧的密码是否是该登录用户的密码
@@ -172,6 +221,7 @@ def pass_info():
 
         # 3.5 响应修改密码结果
         return jsonify(errno=response_code.RET.OK, errmsg='修改密码成功')
+
 
 @user_blue.route('/pic_info', methods=['GET', 'POST'])
 @user_login_data
