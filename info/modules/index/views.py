@@ -33,10 +33,10 @@ def index_news_list():
     if cid == 1:
         # 从所有的新闻中，根据时间倒叙，每页取出10条数据
         # paginate = [News,News,News,News,News,News,News,News,News,News]
-        paginate = News.query.order_by(News.create_time.desc()).paginate(page, per_page, False)
+        paginate = News.query.filter(News.status==0).order_by(News.create_time.desc()).paginate(page, per_page, False)
     else:
         # 从指定的分类中，查询新闻，根据时间倒叙，每页取出10条数据
-        paginate = News.query.filter(News.category_id==cid).order_by(News.create_time.desc()).paginate(page, per_page, False)
+        paginate = News.query.filter(News.status==0,News.category_id==cid).order_by(News.create_time.desc()).paginate(page, per_page, False)
 
     # 4.构造响应的新闻列表数据
     # news_list = [News,News,News,News,News,News,News,News,News,News]

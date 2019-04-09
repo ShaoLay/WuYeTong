@@ -42,7 +42,10 @@ def user_news_list():
 
     news_dict_list = []
     for news in news_list:
-        news_dict_list.append(news.to_basic_dict())
+        # 课堂代码
+        # news_dict_list.append(news.to_basic_dict())
+        # 课后该bug的代码
+        news_dict_list.append(news.to_review_dict())
 
     context = {
         'news_list':news_dict_list,
@@ -340,7 +343,8 @@ def user_info():
         return redirect(url_for('index.index'))
 
     context = {
-        'user':user.to_dict()
+        # 'user':user
+        'user': user.to_dict()
     }
 
     return render_template('news/user.html', context=context)

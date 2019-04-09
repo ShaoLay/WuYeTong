@@ -128,7 +128,8 @@ class News(BaseModel, db.Model):
             "title": self.title,
             "create_time": self.create_time.strftime("%Y-%m-%d %H:%M:%S"),
             "status": self.status,
-            "reason": self.reason if self.reason else ""
+            "reason": self.reason if self.reason else "",
+            "clicks": self.clicks,
         }
         return resp_dict
 
@@ -141,6 +142,7 @@ class News(BaseModel, db.Model):
             "create_time": self.create_time.strftime("%Y-%m-%d %H:%M:%S"),
             "index_image_url": self.index_image_url,
             "clicks": self.clicks,
+            "status": self.status,
         }
         return resp_dict
 
@@ -156,7 +158,8 @@ class News(BaseModel, db.Model):
             "clicks": self.clicks,
             "category": self.category.to_dict(),
             "index_image_url": self.index_image_url,
-            "author": self.user.to_dict() if self.user else None
+            "author": self.user.to_dict() if self.user else None,
+            'category_id':self.category_id
         }
         return resp_dict
 

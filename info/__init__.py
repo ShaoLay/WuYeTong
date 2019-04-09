@@ -63,6 +63,7 @@ def create_app(config_name):
         response.set_cookie('csrf_token', csrf_token)
         return response
 
+
     # 将自定义的过滤器函数，添加到app的过滤器列表中
     # rank ： 在模板中使用的别名
     from info.utils.comment import do_rank
