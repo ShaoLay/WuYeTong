@@ -5,6 +5,7 @@ from info import create_app, db, models # 这里导入models仅仅是为了在�
 from info.models import User
 
 
+
 # 创建app
 app = create_app('dev')
 
